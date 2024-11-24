@@ -31,6 +31,21 @@ public class WingsService {
 	
 	
 	
+	public String update(Wings w) {
+				
+		return "Updated Wings: "+wingsRepo.save(w) ; 
+	}
+	
+	public String delete(String id) {
+		
+		wingsRepo.deleteById(id);
+		return "Deleted Wing ";
+	}
+	
+	
+	
+	
+	
 	
 	
 

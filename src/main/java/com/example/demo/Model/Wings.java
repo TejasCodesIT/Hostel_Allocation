@@ -28,16 +28,12 @@ public class Wings {
   @OneToMany(mappedBy = "wing")
     private List<Wing_rooms> rooms;
 
-	
-	
-	
+
 	
 	public Wings() {
 		super();
 	
 	}
-
-
 
 
 
@@ -54,9 +50,5 @@ public class Wings {
 
 
 
-
-
-	
-	
 
 }

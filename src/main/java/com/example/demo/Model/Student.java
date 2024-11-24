@@ -31,7 +31,7 @@ public class Student {
 	  @ManyToOne
 	  @JsonBackReference
 	  @JoinColumn(name = "room_id")
-	  private Wing_rooms room;
+	  private Wing_rooms room;    /// primary key
 
 	
 	

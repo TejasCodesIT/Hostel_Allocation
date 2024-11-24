@@ -19,8 +19,7 @@ public class Wing_Room_Service {
 	
 	public List<Wing_rooms> getAllWings() {
 		
-		return wingRoomRepo.findAll();
-		
+		return wingRoomRepo.findAll();		
 
 	}
 	
@@ -28,9 +27,30 @@ public class Wing_Room_Service {
 		
 		return wingRoomRepo.save(room);
 		
-		
-
 	}
+	
+	public void getByID(String id) {
+		
+		wingRoomRepo.findById(id);
+	   
+	}
+	
+	
+	public Wing_rooms update(Wing_rooms room) {
+		
+        return wingRoomRepo.save(room); 
+        
+    }
+	public void delete(String id) {
+		
+		
+		wingRoomRepo.deleteById(id);
+		
+	}
+	
+	
+	
+	
 	
 
 }
