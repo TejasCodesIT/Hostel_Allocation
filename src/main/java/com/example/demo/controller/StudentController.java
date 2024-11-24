@@ -37,9 +37,12 @@ public class StudentController {
 	@PostMapping("Student")
 	public String insert(@RequestBody Student s) {
 
-		
+		    
 			Student student = new Student();
 			student = s; 
+			
+			
+			
 			return studentService.insertStudent(s);
 		
 	}	

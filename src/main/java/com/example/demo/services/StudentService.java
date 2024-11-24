@@ -14,6 +14,12 @@ public class StudentService {
 	
 		@Autowired
 		private StudentRepo studentRepo;
+		
+		@Autowired
+		private WingsService service;
+		
+		@Autowired
+	     private Wing_Room_Service room_Service;
 	
 	public List<Student> getStudent(){
 		
@@ -25,8 +31,17 @@ public class StudentService {
 	public String insertStudent(Student s) {
 		
 		
-	
-		return "Inserted Student is "+studentRepo.save(s);
+		String dbgender = room_Service.getWing(s.getRoom().getRoom_id());
+		
+				
+		if(dbgender.equals(s.getGender())) {
+			
+			return "Inserted  Student is "+studentRepo.save(s);
+		}
+		else return "Please cheak gender or id";
+		
+		
+	 	
 
 	}
 	
@@ -37,9 +52,25 @@ public class StudentService {
 
 	}
 	
-	public Student update(Student s) {
+	public String update(Student s) {
 		
-		return studentRepo.save(s) ;
+		
+		
+//		String user_wingid = s.getRoom().getWing().getWing_id();
+		
+		String dbgender = room_Service.getWing(s.getRoom().getRoom_id());
+		
+		
+		//boolean b = service.cheakWingEligibility(dbgender, s.getGender());
+		
+	    
+		
+		if(dbgender.equals(s.getGender())) {
+			
+			return "Updated  Student is "+studentRepo.save(s);
+		}
+		else return "Please cheak gender or id";
+		
 		
 		
 	}

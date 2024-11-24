@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class WingsService {
 		return wingsRepo.findAll();
 	}
 	
+	
+	
+	
 	public String insertWing(Wings wing) {
 		
 		return "Inserted : "+wingsRepo.save(wing) ;
@@ -44,7 +48,30 @@ public class WingsService {
 	
 	
 	
-	
+//	public boolean cheakWingEligibility(String windid, String gender) {
+//		
+//		Optional<Wings> optionalwings= wingsRepo.findById(windid);
+//		
+//		if(optionalwings!=null) {
+//			
+//			Wings wing = optionalwings.get();
+//			
+//			String dbgender = wing.getGender_allowed();
+//			
+//			if(dbgender.equals(gender)) {
+//				
+//				return true;
+//							
+//			}
+//			else return false;
+//			
+//		}
+//		else return false ; 		
+//		
+//		
+//		
+//
+//	}
 	
 	
 	

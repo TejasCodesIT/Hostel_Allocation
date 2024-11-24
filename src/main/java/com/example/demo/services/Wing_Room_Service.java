@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,25 @@ public class Wing_Room_Service {
 		
 		
 		wingRoomRepo.deleteById(id);
+		
+	}
+	
+	
+	public String getWing(String roomid) {
+		
+		Optional<Wing_rooms> optional =wingRoomRepo.findById(roomid);
+		
+		
+		if(optional!=null) {
+			
+			Wing_rooms room = optional.get();
+			
+		      String gender  	= room.getWing().getGender_allowed() ;
+		      
+		      return gender ; 
+			
+		}
+		else return null;
 		
 	}
 	
