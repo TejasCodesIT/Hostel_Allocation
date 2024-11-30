@@ -1,5 +1,7 @@
 package com.example.demo.Model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
@@ -29,6 +31,9 @@ public class Wing_rooms {
     private String roomNumber;
 	private String capacity;
 	private int occupied ;
+	
+	@OneToMany(mappedBy = "room")
+	private List<Student> students;
 	
 	
 	

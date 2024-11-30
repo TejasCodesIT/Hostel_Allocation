@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,7 @@ import com.example.demo.services.UserService;
 import lombok.Delegate;
 
 @RestController
+@RequestMapping("Student")
 public class StudentController {
 	
 	@Autowired
@@ -30,7 +32,7 @@ public class StudentController {
 	
 	
 	
-	@GetMapping("Student")
+	@GetMapping()
 	public List<Student> getMapping(@RequestParam String username , @RequestParam String password){
 		
 		User user = userService.cheakUseer(username, password);
@@ -56,7 +58,7 @@ public class StudentController {
 	}
 	
 	
-	@PostMapping("Student")
+	@PostMapping()
 	public String insert(@RequestBody Student s, @RequestParam String username , @RequestParam String password) {
 		
 		User user = userService.cheakUseer(username, password);
@@ -82,7 +84,7 @@ public class StudentController {
 		
 	}	
 	
-	@PutMapping("Student")
+	@PutMapping()
 	public String update(@RequestBody Student s,@RequestParam String username , @RequestParam String password) {
 		
 		
@@ -108,7 +110,7 @@ public class StudentController {
 	}
 	
 	
-	@DeleteMapping("Student")
+	@DeleteMapping()
 	public String delete(@RequestParam String id,@RequestParam String username , @RequestParam String password) {
 		
 				User user = userService.cheakUseer(username, password);
