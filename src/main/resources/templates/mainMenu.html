@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hostel Management Main Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+    .menu-container {
+      text-align: center;
+    }
+    .menu-container h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .action-btn {
+      display: block;
+      width: 200px;
+      margin: 10px auto;
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      background-color: #007bff;
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .action-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-container">
+    <h1>Hostel Management</h1>
+    <a href="wing/addWing" class="action-btn">Add Wing</a>
+    <a href="deleteWing.html" class="action-btn">Delete Wing</a>
+    <a href="addStudent.html" class="action-btn">Add Student</a>
+    <a href="deleteStudent.html" class="action-btn">Delete Student</a>
+    <a href="addRoom.html" class="action-btn">Add Room</a>
+    <a href="deleteRoom.html" class="action-btn">Delete Room</a>
+  </div>
+  
+  <div class="message">
+    <p th:text="${message}">Welcome ...</p>
+  </div>
+  
+  
+  
+</body>
+</html>

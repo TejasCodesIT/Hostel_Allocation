@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Model.Student;
 import com.example.demo.Model.User;
@@ -21,7 +22,7 @@ import com.example.demo.services.UserService;
 import lombok.Delegate;
 
 @RestController
-@RequestMapping("Student")
+@RequestMapping("/student")
 public class StudentController {
 	
 	@Autowired
@@ -50,20 +51,20 @@ public class StudentController {
 			else return null;
 		}
 		else return null;
-		
-		
 	
-		
 		
 	}
 	
 	
 	@PostMapping()
-	public String insert(@RequestBody Student s, @RequestParam String username , @RequestParam String password) {
+	public ModelAndView insert( Student s) {
+		
+		String username= "tejas";
+		String password="123";
 		
 		User user = userService.cheakUseer(username, password);
 		
-		
+		ModelAndView modelAndView = new  ModelAndView();
 
 		if(user!=null) {
 			String role = user.getRole();
@@ -73,12 +74,25 @@ public class StudentController {
 			{
 				Student student = new Student();
 				student = s; 
-				return studentService.insertStudent(s);
+				
+				modelAndView.setViewName("student_data");
+				modelAndView.addObject("allstudent",studentService.getStudent());
+				 modelAndView.addObject("message", "Student saved successfully!");
+				return modelAndView;
 			}
 			
-			else return "User does not have authority to insert ...";
+			else {
+				
+				return modelAndView.addObject("message", "Dont have access");		
+				
+			}
 		}
-		else return "User not found ... ";
+		else {
+			
+			 return  modelAndView.addObject("message",  "User not found ... ");
+			
+			
+		}
 	
 				
 		

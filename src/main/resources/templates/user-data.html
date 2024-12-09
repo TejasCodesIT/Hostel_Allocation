@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>StudentINFO</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" />
+    </head>
+    <body>
+    
+    <table border="2px">
+    	
+    	<thead>
+    		<tr>
+    			<th>Id : </th>
+    			<th>username : </th>
+    			<th>Password : </th>   			
+    			<th>Role : </th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		 
+    		 <tr th:each="user: ${alluser}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                 <td th:text="${user.password}"></td>
+                  <td th:text="${user.role}"></td>
+            
+    		 </tr>
+    		
+    	</tbody>
+    
+    
+    </table>
+    
+    
+<p th:text="${message}"></p>
+
+    
+    </body>
+    </html>

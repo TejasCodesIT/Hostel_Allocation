@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Model.User;
 import com.example.demo.services.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
+@SessionAttributes("dbuser")
 public class UserController {
 	
 	
@@ -31,23 +36,66 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public String insertUser(@RequestBody User user) {
+	public ModelAndView insertUser(User user) {
 		
-		return userService.insertUser(user);
+		 userService.insertUser(user);
+			
+		ModelAndView modelAndView = new ModelAndView();
+		
+		
+		modelAndView.setViewName("user-data");
+		 modelAndView.addObject("alluser", userService.getUsers());
+		 modelAndView.addObject("message", "User saved successfully!");
+		
+		return modelAndView;
+				
 		
 	}
 	
-	@PutMapping
-	public String updateUser(@RequestBody User user) {
-		
-		return userService.updateUser(user);
-		
-	}
-	
+//	@PutMapping
+//	public String updateUser(@RequestBody User user) {
+//		
+//		return userService.updateUser(user);
+//		
+//	}
+//	
 	@DeleteMapping
 	public String deleteUser(int id) {
 		
 		return userService.deleteUser(id);
+		
+	}
+	
+	@PostMapping("/login")
+	public ModelAndView login(User user,HttpSession session) {
+		
+		User dbuser = userService.cheakUseer(user.getUsername(), user.getPassword());
+		
+		
+		ModelAndView modelAndView = new ModelAndView();
+		
+		
+		
+		if(dbuser!=null) {
+			 session.setAttribute("dbuser", dbuser);
+			 modelAndView.setViewName("redirect:/mainMenu");
+			modelAndView.addObject("dbuser", dbuser);
+			modelAndView.addObject("message","Login Successfully...!");
+		
+		
+		}
+		else {
+			modelAndView.setViewName("index");
+			modelAndView.addObject("message", "Faild to login");
+			
+			
+			
+		}
+	  
+		return modelAndView;
+		
+		
+		
 		
 	}
 	

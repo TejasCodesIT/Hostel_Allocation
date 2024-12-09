@@ -3,20 +3,27 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Model.User;
 import com.example.demo.Model.Wings;
 import com.example.demo.services.UserService;
 import com.example.demo.services.WingsService;
 
-@RestController
+import jakarta.servlet.http.HttpSession;
+
+
+@Controller
+@RequestMapping("/wing")
 public class WingsController {
 	
 	@Autowired
@@ -47,10 +54,17 @@ public class WingsController {
 		
 	}
 	
-	@PostMapping("Wings")
-	public String insertWing(@RequestBody Wings room,@RequestParam String username , @RequestParam String password) {
+	@PostMapping("/insert")
+	public ModelAndView insertWing(HttpSession session,Wings wing) {
 		
-		User user = userService.cheakUseer(username, password);
+		User user = (User)	session.getAttribute("dbuser");
+		
+		ModelAndView modelAndView =new ModelAndView() ;
+		
+		
+		
+		 modelAndView.setViewName("redirect:/mainMenu");
+		
 		
 		if(user!=null) {
 			String role = user.getRole();
@@ -59,12 +73,15 @@ public class WingsController {
 				
 			{
 				
-				  return  "Inserted Wing :  " +wingsService.insertWing(room);
-			}
+				wingsService.insertWing(wing);
+				
+				modelAndView.addObject("message", "Wing Inserted") ;
+				  return  modelAndView;
+			} 
 			
-			else return "User does not have authority to insert ...";
+			else return modelAndView.addObject("message","User does not have authority to insert ...");
 		}
-		else return "User not found ... ";
+		else return modelAndView.addObject("mesage", "User not found ... ");
 		
 	}
 	
@@ -111,6 +128,11 @@ public class WingsController {
 		
 		
 	}
+	
+	@GetMapping("/addWing")
+    public String showAddWingPage() {
+        return "addWing"; // This will look for addWing.html in templates folder
+    }
 	
 	
 	

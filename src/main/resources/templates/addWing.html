@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Wing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Add Wing</h2>
+        <form action="insert" method="POST">
+        	
+        	<label for="id">Wing Id:</label>
+            <input type="text" id="id" name="wing_id" required>
+        		
+            <label for="wingName">Wing Name:</label>
+            <input type="text" id="wingName" name="wing_name" required>
+
+            <label for="gender_allowed">Gender Allowed:</label>
+            <input type="text" id="gender_allowed" name="gender_allowed" required>
+
+            <label for="capacity">Wing Capacity:</label>
+            <input type="number" id="capacity" name="capacity" required>
+
+            <label for="occupied">Occupied:</label>
+            <input type="number" id="occupied" name="occupied" required>
+
+            <input type="submit" value="Add Wing">
+        </form>
+        <!-- Display success message after form submission -->
+        <div class="message">
+            <p th:text="${message}">Success message goes here</p>
+        </div>
+    </div>
+</body>
+
+</html>
